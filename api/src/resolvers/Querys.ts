@@ -6,6 +6,7 @@ export const Query = {
     
     getPersons: async (parent:any, args:any, context : {client:Db}) => {
         const db = context.client;
-        return db.collection("Persons").find().toArray();
+        return await db.collection("Persons").find().toArray();
     },
+
 }

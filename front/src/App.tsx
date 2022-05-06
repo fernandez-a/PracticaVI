@@ -1,11 +1,11 @@
-import React,{useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { ApolloClient,InMemoryCache,ApolloProvider } from '@apollo/client';
-import PersonsList from './components/PersonList';
-import AddPerson from './components/AddPerson';
-import DeletePerson from './components/DeletePerson';
-import EditPerson from './components/EditPerson';
+import React,{useState} from 'react';
+import PersonsList from './Components/PersonList';
+import AddPerson from './Components/AddPerson';
+import ContractsOrder from './Components/Contactsorder';
+import { Person } from './types';
+import Detail from './Components/Detail';
 
 function App() {
 
@@ -13,19 +13,22 @@ function App() {
     uri: process.env.REACT_APP_API_URL,
     cache: new InMemoryCache()
   });
-
+  
   const [reload,setReload] = useState<boolean>(true);
+  const [order,setOrder] = useState<boolean>(true);
+  const [detail,setDetail] = useState<Person>({ name: "", surname: "", phone: "", email: ""});
+  const [visible,setVisible] = useState<boolean>(false);
   const reloadHandler = () => {
     setReload(!reload)
   }
+
   return (
     <ApolloProvider client={client}>
-      <PersonsList key={String(reload)} reloadHandler={reloadHandler}></PersonsList>
+      <PersonsList order={order} setVisible={setVisible}></PersonsList>
+      <ContractsOrder setOrder={setOrder}></ContractsOrder>
       <AddPerson reloadHandler={reloadHandler}></AddPerson>
-      <DeletePerson reloadHandler={reloadHandler}></DeletePerson>
-      <EditPerson reloadHandler={reloadHandler}></EditPerson>
+      <Detail visible = {visible} setVisible={setVisible}></Detail>
     </ApolloProvider>
-    
   );
 }
 

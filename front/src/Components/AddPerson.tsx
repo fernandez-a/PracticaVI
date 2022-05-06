@@ -1,10 +1,11 @@
 import React, { FC, useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
+import { Styled_Button_1, Styled_div_1 } from "../styles";
 
 const ADD_PERSON = gql`
   mutation addPerson($name: String!, $surname: String!, $email: String!, $phone: String!) {
     addPerson(name: $name, surname: $surname, email: $email, phone: $phone) {
-      _id
+      Name
     }
   }
 `;
@@ -18,12 +19,12 @@ const AddPerson: FC<{ reloadHandler: () => void }> = ({ reloadHandler }) => {
 
   const [addPersonMutation] = useMutation(ADD_PERSON);
   return (
-    <div>
+    <Styled_div_1>
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Nombre"
+        placeholder="Name"
       />
       <input
         type="text"
@@ -35,7 +36,7 @@ const AddPerson: FC<{ reloadHandler: () => void }> = ({ reloadHandler }) => {
         type="text"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        placeholder="PhoneNumber"
+        placeholder="Phone Number"
       />
        <input
         type="text"
@@ -43,8 +44,8 @@ const AddPerson: FC<{ reloadHandler: () => void }> = ({ reloadHandler }) => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
       />
-      <button
-        onClick={() =>
+      <Styled_Button_1
+        onClick={() =>{
           addPersonMutation({
             variables: {
               name,
@@ -52,12 +53,20 @@ const AddPerson: FC<{ reloadHandler: () => void }> = ({ reloadHandler }) => {
               email,
               phone
             },
-          }).then(() => reloadHandler())
+          }).then(() => {
+            
+          reloadHandler();
+          setEmail("");
+          setName("");
+          setSurname("");
+          setPhone("");
+        })
         }
+      }
       >
-        Add
-      </button>
-    </div>
+        <h2>Add</h2>
+      </Styled_Button_1>
+    </Styled_div_1>
   );
 };
 
