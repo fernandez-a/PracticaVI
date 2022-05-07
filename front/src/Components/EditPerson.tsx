@@ -1,19 +1,18 @@
 import React, { FC, useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import {Person} from "../types"
-import styled from '@emotion/styled'
 import { Styled_Button_1, Styled_div_2 } from "../styles";
 
 
 const EDIT_PERSON = gql`
   mutation editPerson($name: String!, $surname: String!, $phone: String!, $email: String!, $email2: String!) {
-    addPerson(name: $name, surname: $surname, phone: $phone, email: $email, email2: $email2) {
-      Name
+    editPerson(name: $name, surname: $surname, phone: $phone, email: $email, email2: $email2) {
+      _id
     }
   }
 `;
 
-const EditPerson: FC<{  setDetail:(persona:Person)=>void, detail:Person}> = ({detail,setDetail}) => {
+const EditPerson: FC<{  setDetail:(persona:Person)=>void, detail:Person, reloadHandler: () => void,  setVisible:(condition:boolean) => void }> = ({detail,setDetail, setVisible,reloadHandler}) => {
 
     const [name, setName] = useState<string>("");
     const [surname, setSurname] = useState<string>("");
@@ -59,6 +58,8 @@ const EditPerson: FC<{  setDetail:(persona:Person)=>void, detail:Person}> = ({de
                                 phone: phone
                             },
                         }).then(() => {
+                            reloadHandler()
+                            setVisible(false)
                             setEmail("");
                             setName("");
                             setSurname("");

@@ -7,6 +7,7 @@ import { Styled_Contact, Styled_List } from "../styles";
 const GET_PERSONS = gql`
   query getPersons {
     getPersons {
+      _id
       name
       surname
       email

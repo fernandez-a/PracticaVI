@@ -7,11 +7,11 @@ import { Styled_Button, Styled_div_3 } from "../styles";
 
 const DELETE_PERSON = gql`
   mutation deletePerson($email: String!) {
-    addPerson(email: $email)
+    deletePerson(email: $email)
   }
 `;
 
-const DeleteContact: FC<{ detail:Person, setVisible:(condition:boolean)=>void}> = ({detail,setVisible}) => {
+const DeleteContact: FC<{ detail:Person, setVisible:(condition:boolean)=>void, reloadHandler: () => void}> = ({detail,setVisible, reloadHandler}) => {
 
     const [addDeleteMutation] = useMutation(DELETE_PERSON);
 
@@ -24,6 +24,7 @@ const DeleteContact: FC<{ detail:Person, setVisible:(condition:boolean)=>void}> 
                                 email: detail.email,
                             },
                         }).then(() => {
+                            reloadHandler()
                             setVisible(false)
                         })
                     }

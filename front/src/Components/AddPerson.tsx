@@ -5,7 +5,7 @@ import { Styled_Button_1, Styled_div_1 } from "../styles";
 const ADD_PERSON = gql`
   mutation addPerson($name: String!, $surname: String!, $email: String!, $phone: String!) {
     addPerson(name: $name, surname: $surname, email: $email, phone: $phone) {
-      Name
+      _id
     }
   }
 `;

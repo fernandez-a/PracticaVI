@@ -27,7 +27,7 @@ function App() {
       <PersonsList order={order} setVisible={setVisible} setDetail={setDetail}></PersonsList>
       <ContractsOrder setOrder={setOrder}></ContractsOrder>
       <AddPerson reloadHandler={reloadHandler}></AddPerson>
-      <Detail visible = {visible} setVisible={setVisible} detail={detail} setDetail={setDetail}></Detail>
+      <Detail visible = {visible} setVisible={setVisible} detail={detail} setDetail={setDetail} reloadHandler = {reloadHandler}></Detail>
     </ApolloProvider>
   );
 }

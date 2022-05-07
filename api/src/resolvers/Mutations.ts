@@ -27,7 +27,7 @@ export const Mutation = {
             email,
             phone,
         });
-        return { name:name2, surname: surname2, email, phone};
+        return { name:name2, surname: surname2, email, phone, _id: result.insertedId};
     },
 
     deletePerson: async (parent:any, args:{email:string}, context : {client:Db}) => {
