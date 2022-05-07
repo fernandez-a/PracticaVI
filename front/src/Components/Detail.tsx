@@ -36,6 +36,7 @@ const Detail: FC<{
         },
         content: {
           padding: "0",
+          
         },
       }}
     >

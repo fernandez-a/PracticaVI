@@ -7,7 +7,7 @@ import { Styled_Button_1, Styled_div_2 } from "../styles";
 const EDIT_PERSON = gql`
   mutation editPerson($name: String!, $surname: String!, $phone: String!, $email: String!, $email2: String!) {
     editPerson(name: $name, surname: $surname, phone: $phone, email: $email, email2: $email2) {
-      _id
+        email,
     }
   }
 `;
@@ -49,22 +49,26 @@ const EditPerson: FC<{  setDetail:(persona:Person)=>void, detail:Person, reloadH
                 />
                 <Styled_Button_1
                     onClick={() => {
-                        addEditMutation({
-                            variables: {
-                                name: name,
-                                surname: surname,
-                                email: detail.email,
-                                email2:email,
-                                phone: phone
-                            },
-                        }).then(() => {
-                            reloadHandler()
-                            setVisible(false)
-                            setEmail("");
-                            setName("");
-                            setSurname("");
-                            setPhone("");
-                        })
+                        if(name == "" || surname == "" || phone == "" || email == ""){
+                            alert("Please fill all the fields")
+                        }else{   
+                            addEditMutation({
+                                variables: {
+                                    name: name,
+                                    surname: surname,
+                                    email: detail.email,
+                                    email2:email,
+                                    phone: phone
+                                },
+                            }).then(() => {
+                                console.log("Edited")
+                                setDetail({name:name,surname:surname,email:email,phone:phone})
+                                setEmail("");
+                                setName("");
+                                setSurname("");
+                                setPhone("");
+                            })
+                        }
                     }
                     }
                 >

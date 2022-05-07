@@ -46,23 +46,27 @@ const AddPerson: FC<{ reloadHandler: () => void }> = ({ reloadHandler }) => {
       />
       <Styled_Button_1
         onClick={() =>{
-          addPersonMutation({
-            variables: {
-              name,
-              surname,
-              email,
-              phone
-            },
-          }).then(() => {
-            
-          reloadHandler();
-          setEmail("");
-          setName("");
-          setSurname("");
-          setPhone("");
-        })
+          if(name == "" || surname == "" || phone == "" || email == ""){
+            alert("Please fill all the fields")
+          }else{
+            addPersonMutation({
+              variables: {
+                name,
+                surname,
+                email,
+                phone
+              },
+            }).then(() => {
+              
+            reloadHandler();
+            setEmail("");
+            setName("");
+            setSurname("");
+            setPhone("");
+            })
+          }
         }
-      }
+        }
       >
         <h2>Add</h2>
       </Styled_Button_1>
