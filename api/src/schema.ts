@@ -11,6 +11,7 @@ export const typeDefs = gql`
   type Query {
     test: String
     getPersons: [Person!]!
+    getPerson( email: String): Person
   }
 
   type Mutation {

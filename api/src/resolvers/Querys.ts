@@ -9,4 +9,7 @@ export const Query = {
         return await db.collection("Persons").find().toArray();
     },
 
+    getPerson: async (parent:any, args:{email:string},context:{client:Db})=>{
+        return context.client.collection("Persons").find({email:args.email})
+    }
 }

@@ -88,6 +88,44 @@ export const Styled_Button_2 = styled.button`
 
 export const StyledModal = styled.div`
     
-    heigth:1px;
-    width:1px;
+    height:100%;
+    width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: column wrap;
+    margin-left: 2%;
+
+`
+
+export const Styled_div_2 = styled.div`
+position : absolute;
+top:30%;
+right: 5%;
+width:45%;
+height: 70%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-flow: column wrap;
+input{
+    width: 80%;
+    height: 5%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+`
+
+export const Styled_div_3 = styled.div`
+position : absolute;
+top: 0%;
+right: 5%;
+width:45%;
+height: 30%;
+display: flex;
+justify-content: center;
+align-items: flex-end;
+
+
 `

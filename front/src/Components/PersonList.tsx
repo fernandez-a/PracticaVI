@@ -15,7 +15,7 @@ const GET_PERSONS = gql`
   }
 `;
 
-const PersonsList: FC<{ order: boolean, setVisible:(condition:boolean) => void }> = ({order, setVisible}) => {
+const PersonsList: FC<{ order: boolean, setVisible:(condition:boolean) => void , setDetail:(persona:Person)=>void}> = ({order, setVisible,setDetail}) => {
 
   const { loading, error, data } = useQuery<{ getPersons: Person[] }>(
     GET_PERSONS,
@@ -33,7 +33,7 @@ const PersonsList: FC<{ order: boolean, setVisible:(condition:boolean) => void }
     return (
       <Styled_List>
         {sortedData.map((contact, index: number) => {
-          return <Styled_Contact key={index} onClick={() => {setVisible(true)}}>
+          return <Styled_Contact key={index} onClick={() => {setVisible(true);setDetail(contact)}}>
             {contact.name}  
           </Styled_Contact>
         })}

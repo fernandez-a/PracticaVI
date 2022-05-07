@@ -24,10 +24,10 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <PersonsList order={order} setVisible={setVisible}></PersonsList>
+      <PersonsList order={order} setVisible={setVisible} setDetail={setDetail}></PersonsList>
       <ContractsOrder setOrder={setOrder}></ContractsOrder>
       <AddPerson reloadHandler={reloadHandler}></AddPerson>
-      <Detail visible = {visible} setVisible={setVisible}></Detail>
+      <Detail visible = {visible} setVisible={setVisible} detail={detail} setDetail={setDetail}></Detail>
     </ApolloProvider>
   );
 }
